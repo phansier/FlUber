@@ -165,37 +165,59 @@ One assumption about the product is that it will always be used on mobile phones
 \section{External Interface Requirements}
 
 \subsection{User Interfaces}
-A first-time user of the mobile application should see the empty timetable page when he/she opens the application. If the user has not registered, he/she should open the menu, see Figure 1, and be able to do that on the search page, see Figures 2 and 3.
-If the user is not a first-time user, he/she should be able to see the timetable page directly with his/her own timetable when the
-application is opened, see Figure 4.   Also, it is possible to find all the campuses and all the buildings on the map page, see Figure 6. The information about the application can be found on the info page, see Figure 7.
+A first-time user of the mobile application should see the Login page when he/she opens the application. There he/she is able to sign up into existing account, see Figure 1, or go to Register page, see Figure 2.
+
+After registration or login or if user has already been logged in after launch of the application the Main page with the list of abailable bouquets near the user's location will be visible, see Figure 3. Bouquet images are scrollable together with the changing of the Seller's name and his location.
 
 \begin{figure}[h]
-\begin{minipage}[h]{0.32\linewidth}
-\center{\includegraphics[width=0.8\linewidth]{menu.png} \\ Figure1. Menu in navigation drawer}
-\end{minipage}
-\hfill
-\begin{minipage}[h]{0.32\linewidth}
-\center{\includegraphics[width=0.8\linewidth]{searchstudent.png} \\Figure 2. Search page for student}
-\end{minipage}
-\begin{minipage}[h]{0.32\linewidth}
-\center{\includegraphics[width=0.8\linewidth]{searchprofessor.png} \\Figure 3. Search page for professor}
-\end{minipage}
+	\begin{minipage}[h]{0.32\linewidth}
+		\center{\includegraphics[width=0.7\linewidth]{LogInPage.png} \\ Figure1. Login page}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[h]{0.32\linewidth}
+		\center{\includegraphics[width=0.7\linewidth]{RegisterPage.png} \\Figure 2. Register page}
+	\end{minipage}
+	\begin{minipage}[h]{0.32\linewidth}
+		\center{\includegraphics[width=0.7\linewidth]{MainScreen.png} \\Figure 3. Main page with the list of avaliable bouquets near the user's location}
+	\end{minipage}
 \end{figure}
+
+Navigation drawer is an implementation of a menu navigation in the application, which appears from the left side of the screen, see Figure 4. There is a name of user together with the list of other options: go to Main screen or to Seller's page, to Chat or to Info page.
+
+Seller page, see Figure 5, is a grid of bouquets suggested by the Seller to purchase together with the info about booking requests and cancelations, and the button for new bouquets addition.
+
+After pushing it sellers sees the screen as in Figure 6. Here he can change the photo of good, the description together with the size, the price and available amount.
+
 \begin{figure}[h]
-\begin{minipage}[h]{0.32\linewidth}
-\center{\includegraphics[width=0.8\linewidth]{timetable.png} \\ Figure 4. Timetable page}
-\end{minipage}
-\hfill
-\begin{minipage}[h]{0.32\linewidth}
-\center{\includegraphics[width=0.8\linewidth]{settings.png} \\Figure 5. Settings page}
-\end{minipage}
-\begin{minipage}[h]{0.32\linewidth}
-\center{\includegraphics[width=0.8\linewidth]{map.png} \\Figure 6. Map page}
-\end{minipage}
+	\begin{minipage}[h]{0.32\linewidth}
+		\center{\includegraphics[width=0.7\linewidth]{Menu.png} \\ Figure 4. Menu page implementation in Navigation drawer}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[h]{0.32\linewidth}
+		\center{\includegraphics[width=0.7\linewidth]{SellerScreen.png} \\Figure 5. Seller page with bookings information}
+	\end{minipage}
+	\begin{minipage}[h]{0.32\linewidth}
+		\center{\includegraphics[width=0.7\linewidth]{ProductSellerPage.png} \\Figure 6. Product page visible by Seller}
+	\end{minipage}
 \end{figure}
+
+After pushing the button Order buy Buyer on main page, see Figure 3, he sees the product page. Here is a detailed information about bouquet and a button for ordering, see Figure 7.
+
+Chat is available for Buyers and Sellers to communicate about purchase and delivery details, see Figure 8.
+
+Info page, see Figure 9, contains the information aboiut the application.
+
 \begin{figure}[h]
-\center
-{\includegraphics[width=40mm]{info.png} \\Figure 7. Info page}
+	\begin{minipage}[h]{0.32\linewidth}
+		\center{\includegraphics[width=0.7\linewidth]{ProductBuyerPage.png} \\ Figure 7. Product page visible by Buyer}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[h]{0.32\linewidth}
+		\center{\includegraphics[width=0.7\linewidth]{Chat.png} \\Figure 8. Chat between buyers and sellers page}
+	\end{minipage}
+	\begin{minipage}[h]{0.32\linewidth}
+		\center{\includegraphics[width=0.7\linewidth]{Info.png} \\Figure 9. Info page}
+	\end{minipage}
 \end{figure}
 
 \newpage
@@ -207,14 +229,12 @@ mobile phone.
 
 \subsection{Software Interfaces}
 The mobile application communicates with the GPS application in order to get geographical information
-about where the user is located and the visual representation of it, with RUZ system to get timetables
-and with the local database in order to save and edit timetables, see Figure 1. The communication between
-the database and the mobile application consists of operation concerning both reading and modifying the data.
+about where the user is located and the visual representation of it, with Firebase system to sync orders, bookings, chats and user info.
 
 \subsection{Communications Interfaces}
 The communication between the different parts of the system is important since they depend on each
 other. However, in what way the communication is achieved is not important for the system and is
-therefore handled by the underlying operating systems for both the mobile application and the web portal.
+therefore handled by the underlying operating systems for both the mobile application and the backend service.
 
 \section{Functional requirements}
 This section includes the requirements that specify all the fundamental actions of the software system.
@@ -378,8 +398,7 @@ The requirements were divided into two releases based on complexity/necessity. F
 
 \section{Appendix A: Analysis Models}
 \begin{figure}[h]
-\center
-{\includegraphics[width=150mm]{er.png} \\Entity-relationship diagram}
+%\center{\includegraphics[width=150mm]{er.png} \\Entity-relationship diagram}
 \end{figure}
 
 RDD for database
