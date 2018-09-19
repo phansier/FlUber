@@ -404,20 +404,32 @@ The requirements were divided into two releases based on complexity/necessity. F
 RDD for database
 Entities
 \begin{itemize}
-\item Lesson = {[\underline{lesson_id:Text}, begin_lesson:Text, end_lesson:Text, lecturer_id:Text, building:Text, date:Text, kind_of_work:Text, discipline:Text, stream:Text, auditorium:Text, group_id:Text]} 
-\item Student = {[\underline{email:Text}, last_used:Datetime]}
-\item Lecturer = {[\underline{lecturer_id:Text}, chair_id:Text, fio:Text]}
-\item Group = {[\underline{group_id:Text}, faculty_id:Text]}
-\item Faculty = {[\underline{faculty_id:Text}, faculty_name:Text]}  
-\item Department = {[\underline{chair_id:Text}, dep_name:Text]}  
+\item Flower = {[\underline{flower_id:Text}, name:Text, full_name:Text, color:Text, country:Text, price: Integer, available:Bool]}
+\item Bouquet = {[\underline{bouquet_id:Text}, price:Text, flowers_count:Integer, wrapping:Text, available:Bool]}
+\item Shop = {[\underline{shop_id:Text}, name:Text, location:Text, about:Text, rating:Text, opens:Date, closes:Date]} 
+\item User = {[\underline{email:Text}, name:Text, password:Text, date_registered: Date, isSeller:Bool]}
+\item Order = {[\underline{order_id:Text}, created_at:Date, discount:Integer, price:Integer, delivery:Integer, address:Text, shop_id:Text]}
+\item Chat = {[\underline{chat_id}, buyer_id:Text, seller_id:Text]}
+\item Message = {[\underline{message_id}, text:Text, created_at:Date]}
 \end{itemize}
 
 Relationships
 \begin{itemize}
-\item attends = {[\underline{lesson_id:Text, user_id:Text}, is_deleted:Integer]}
-\item is_conducted_by = {[\underline{lesson_id:Text}, lecturer_id:Text]}
-\item studies_at = {[\underline{group_id:Text}, faculty_id:Text]}
-\item works_at = {[\underline{lecturer_id:Text}, chair_id:Text]}
+
+\item bouquets = {[\underline{flower_id:Text, bouquet_id:Text}]}
+
+\item flowers_at_shop = {[\underline{flower_id:Text, shop_id:Text}]}
+
+\item bouquets_at_shop = {[\underline{bouquet_id:Text, shop_id:Text}]}
+
+\item users_orders = {[\underline{user_id:Text, order_id:Text}]}
+
+\item orders_details = {[\underline{order_id:Text, bouquet_id:Text}]}
+
+\item users_chats = {[\underline{user_id:Text, chat_id:Text}]}
+
+\item chats_messages = {[\underline{chat_id:Text, message_id:Text}]}
+
 \end{itemize}
 
 \end{document}
