@@ -256,94 +256,110 @@ downloading the mobile application.\\
 RAT: In order for a user to download a new/updated release.\\
 DEP: FR1
 
-\subsection{User enters a corporate email}
+\subsection{User sign in with credentials}
 \textbf{ID: FR3}\\
-TITLE: User enters a corporate email\\
-DESC: Given that a student has downloaded the mobile application, then the student should be able to enter the corporate email address.\\
-RAT: In order for a user to register in the mobile application.\\
-DEP: FR1
+TITLE: User enters their e-mail and password\\
+DESC: Given that a the application is installed, the user should be able to sign in providing their e-mail and password, which were provided during sign up and stored safely in the backend. If the e-mail and password pair does not exist in the database, a message should be shown suggesting the user to check correctness of provided credentials.\\
+RAT: In order for a user to sign in to the mobile application.\\
+DEP: FR2
 
-\subsection{Download timetable from RUZ server}
+\subsection{User sign up}
 \textbf{ID: FR4}\\
-TITLE: Download timetable from RUZ server\\
-DESC: Given that the user entered corporate email or chose appropriate group or professor, then application connects to RUZ server,
-downloads timetables and fills database.\\
-RAT: Filling database\\
+TITLE: User signs up to the mobile application\\
+DESC: Given that a the application is installed, the user should be able to sign up to the application providing e-mail address, password and user's full name. The e-mail address must not be already stored in the backend. If so application should show to the user a message suggesting that an account with this address already exists. The information entered by user should be checked for validity according to the database rules, then saved to the database. If an account was successfully created, a message is shown to the user.\\
+RAT: Creating an account\\
+DEP: FR2
+
+\subsection{Location acquiring}
+\textbf{ID: FR5}\\
+TITLE: The application acquires user's location\\
+DESC: Given that the user signed in successfully to the mobile application, the application should be able to acquire user's current location using API provided by the operation system. If needed, the application should ask the user permission to access location data. If the permission is denied, the application should show the user a message explaining, why the application requires location data to work correctly. If the user's location is still unavailable, the application should ask the user to provide their location selecting a point on the map or by passing a query congaing a street address to the map API to determine geographical coordinates. Geographical coordinates received from the operation system or the map, should be decoded to a street address and shown to the user. The app should show resulting user location on the map and ask user to confirm if the location is acquired correctly.\\
+RAT: Showing offers available in user's neighborhood\\
 DEP: FR3
 
-\subsection{Display timetable}
-\textbf{ID: FR5}\\
-TITLE: Display timetable\\
-DESC: Given that timetable has been downloaded from server succesfully, than the first view dispalyed to user
-should be timetable view. Every class in a table should have type, name, group name, teacher name and address.\\
-RAT: Display timetable view.\\
-DEP: FR4
+\subsection{Choose filters}
+\textbf{ID: FR6}\\
+TITLE: Download offers to show on the main page\\
+DESC: Given that user signed in successfully to the mobile application, the filters for searching offers should be changeable. The user should be able to choose the range of search, the size of the bouquet and the pricing category. After the filters are changed, new values should be saved in the application. By default no filters are applied.\\
+RAT: Search offers.\\
+DEP: FR3
+
+\subsection{Download the offers}
+\textbf{ID: FR7}\\
+TITLE: Download offers to show on the main page\\
+DESC: Given that user signed in successfully to the mobile application and user's current location is available, the offers should be downloaded from the backend server. The application forms a request to the backend that contains user's geographical coordinates and chosen filters. The server should response with the entities describing offers available for buying in this neighborhood.\\
+RAT: Showing offers.\\
+DEP: FR5
+
+\subsection{Display offers on main page}
+\textbf{ID: FR8}\\
+TITLE: Display offers on the main page\\
+DESC: Given that the offers have been downloaded from server successfully, the offers should be shown on the main page. For each offer the application shows a photo, size and price. This page should be updated each time it is opened if Internet connection is available or by user request (scroll down).\\
+RAT: Display offers view.\\
+DEP: FR7
 
 \subsection{App menu}
-\textbf{ID: FR6}\\
+\textbf{ID: FR9}\\
 TITLE: App menu\\
-DESC: The user should be able to select different pages: Timetable, Search, Map, About.\\
-RAT: In order to user change pages.\\
-DEP: FR4
+DESC: The user should be able to select different pages: Main screen, Seller mode, Chat, About.\\
+RAT: In order for user to change pages.\\
+DEP: FR3
 
-\subsection{Search}
-\textbf{ID: FR7}\\
-TITLE: Search\\
-DESC: The user should be able to search timetable for some group or teacher. The user select role: student or teacher.
-For student role user select program and group. For teacher user select department and name.
-The results should be displayed in the same way as timetable.\\
-RAT: In order to user search timetable.\\
-DEP: FR6
+\subsection{Offer page}
+\textbf{ID: FR10}\\
+TITLE: Offer page\\
+DESC:On user clicked on an offer, a detailed information should be shown about the chosen offer. The application requests the detailed information of the offer from the backend server. This information includes photos, detailed description, size and price. User should be able to make a purchase. On seller mode page, if the offer is made from the current account, this information should be alterable, moreover seller can set the number of available for sell bouquets.\\
+RAT: In order to show and edit offer details.\\
+DEP: FR8
 
-\subsection{Map view}
-\textbf{ID: FR8}\\
-TITLE: Map view\\
-DESC: View with all campuses on map. \\
-RAT: In order to user find campuses.\\
-DEP: FR6
+\subsection{Seller mode page}
+\textbf{ID: FR11}\\
+TITLE: Seller mode page\\
+DESC: The application should request from the backend server information relevant to the user as seller. This includes number of offers sold, number of offers booked, number of offers canceled and offers made by this account. For each offer the application shows a photo, size, price and number of products available. User should be able to add a new offer. This opens an empty offer page.\\
+RAT: In order to show seller's offers. This page should be updated each time it is opened if Internet connection is available or by user request (scroll down).\\
+DEP: FR9
+
+\subsection{Making a purchase}
+\textbf{ID: FR12}\\
+TITLE: Making a purchase\\
+DESC: Magic happens here\\
+DEP: FR10
+
+\subsection{Chat}
+\textbf{ID: FR14}\\
+TITLE: Chat\\
+DESC: After user makes a purchase, sellers contact is added to the chat page. When seller or user clicks on a contact, previous messages are shown. User and seller should be able to send and receive messages.\\
+RAT: In order to provide means of communication between user and seller.\\
+DEP: FR9
 
 \subsection{About}
-\textbf{ID: FR9}\\
+\textbf{ID: FR13}\\
 TITLE: About\\
 DESC: The user should be able to read information about app developers.\\
 RAT: In order to user read information about developers.\\
-DEP: FR6
-
-\subsection{Sync database with RUZ}
-\textbf{ID: FR10}\\
-TITLE: Sync database with RUZ.\\
-DESC: The user should be able to update information from RUZ.\\
-RAT: In order to user update local information with RUZ.\\
-DEP: FR4
-
-\subsection{Edit timetable}
-\textbf{ID: FR11}\\
-TITLE: Edit timetable\\
-DESC: The user should be able to edit timetable by deleting classes.\\
-RAT: In order to user change local timetable.\\
-DEP: FR5
+DEP: FR9
 
 \section{Perfomance requirements}
 The requirements in this section provide a detailed specification of the user interaction with the software
 and measurements placed on the system performance. 
 
-\subsection{Usage of the timetable feature}
+\subsection{Usage of sign in feature}
 \textbf{ID: QR1}\\
-TITLE: Usage timetable feature\\
-DESC:  Timetable view should be easy to understand.\\
-RAT: In order to for a user to use tmetable easily\\
+TITLE: Usage of sign in feature\\
+DESC:  Signing in should be easy to understand.\\
+RAT: In order for a user to make purchases easily\\
 DEP: None
 
 \subsection{Prominent menu feature}
 \textbf{ID: QR2}\\
 TITLE: Prominent menu feature\\
 DESC:  Menu should be prominent and easy to find for user.\\
-RAT: In order to for a user to use tmetable easily\\
+RAT: In order to for a user to use the app easily\\
 DEP: None
 
-\subsection{Usage of the search feature}
+\subsection{Usage of the offer page}
 \textbf{ID: QR3}\\
-TITLE: Usage of the search feature\\
+TITLE: Usage of the offer page\\
 DESC:  The different search options should be evident, simple and easy to understand.\\
 RAT: In order to for a user to perform a search easily.\\
 DEP: None
@@ -351,8 +367,8 @@ DEP: None
 \subsection{Response time}
 \textbf{ID: QR4}\\
 TAG: ResponseTime\\
-GIST: The fastness of the timetable\\
-SCALE: The response time of a timetable\\
+GIST: The fastness of the offers page\\
+SCALE: The response time of offers\\
 METER: Measurements obtained from 1000 loadings during testing.\\
 MUST: No more than 2 seconds 100\% of the time.\\
 WISH: No more than 1 second 100\% of the time.
