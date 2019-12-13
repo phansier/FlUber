@@ -1,6 +1,6 @@
 # FlUber
 
-Software Engineering Methodology learning project
+Learning project
 
 SRS is here: https://github.com/AndreySBer/FlUber/blob/master/SRS/SRS.pdf 
 
